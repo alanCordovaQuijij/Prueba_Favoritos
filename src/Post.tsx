@@ -73,7 +73,7 @@ export const Post = ({navigation}: Props) => {
     });
   };
   const [icon, setIcon] = useState<number>(0);
-  // holfa
+  // hola
 
   const handleAddFavorito = async (item: DatosListado) => {
     const isFavorite = favoritos.some(favorite => favorite.id === item.id);
