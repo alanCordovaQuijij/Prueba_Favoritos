@@ -63,18 +63,17 @@ export const Post = ({navigation}: Props) => {
 
   const showToast = (type: string, text1: string) => {
     Toast.show({
-
       // type:'tomatoToast',
       // props: { uuid: 'bba1a7d0-6ab2-4a0a-a76e-ebbe05ae6d70' }
 
-       type: type,
-       text1: text1,
-       visibilityTime:2000,
+      type: type,
+      text1: text1,
+      visibilityTime: 2000,
       //text2: 'This is some something 👋'
-      
     });
-  }
-  const [icon, setIcon] = useState<number>(0)
+  };
+  const [icon, setIcon] = useState<number>(0);
+  // holfa
 
   const handleAddFavorito = async (item: DatosListado) => {
     const isFavorite = favoritos.some(favorite => favorite.id === item.id);
@@ -84,8 +83,7 @@ export const Post = ({navigation}: Props) => {
         setFavoritos([...favoritos, item]);
         await mmkv.setMapAsync('Favoritos', [...favoritos, item]);
         showToast('success', '¡ Item añadido con exito !');
-        setIcon(item.id)
-
+        setIcon(item.id);
       } else {
         showToast('error', '¡ Este item ya está añadido a favoritos !');
         //setOpen(true)
@@ -97,8 +95,6 @@ export const Post = ({navigation}: Props) => {
     }
   };
 
- 
-
   useEffect(() => {
     console.log('Open', open);
     //setOpen(false)
@@ -109,13 +105,14 @@ export const Post = ({navigation}: Props) => {
   };
 
   useEffect(() => {
-   console.log("favoritos",favoritos.some(favoritos => favoritos.id === 1))
-  }, [favoritos])
-  
+    console.log(
+      'favoritos',
+      favoritos.some(favoritos => favoritos.id === 1),
+    );
+  }, [favoritos]);
 
   return (
     <>
-    
       <SafeAreaView style={{justifyContent: 'center', alignItems: 'center'}}>
         <Image
           className="h-full w-full absolute"
@@ -144,17 +141,15 @@ export const Post = ({navigation}: Props) => {
                     paddingHorizontal: 10,
                     alignSelf: 'center',
                   }}>
-                  <View style={{width: '75%'}} className='space-y-4'>
-                    <Text  className="text-black text-center font-extrabold	text-base">
+                  <View style={{width: '75%'}} className="space-y-4">
+                    <Text className="text-black text-center font-extrabold	text-base">
                       {item.title}
                     </Text>
 
-                    <Text className="text-black text-justify	">
-                      {item.body}
-                    </Text>
+                    <Text className="text-black text-justify	">{item.body}</Text>
                   </View>
 
-                  <View style={ {}}>
+                  <View style={{}}>
                     <TouchableOpacity
                       style={{
                         backgroundColor: 'transparent',
@@ -164,12 +159,19 @@ export const Post = ({navigation}: Props) => {
                       }}
                       onPress={() => handleAddFavorito(item)}>
                       {/* <Text className="text-center">Añadir a favoritos</Text> */}
-                      <MaterialCommunityIcons  
-                        name={ favoritos.some(favoritos => favoritos.id === item.id) ?  "check-bold" : "heart-plus"} 
-                        color={ favoritos.some(favoritos => favoritos.id === item.id) ?  "#257a04" : "#eb4034"} 
+                      <MaterialCommunityIcons
+                        name={
+                          favoritos.some(favoritos => favoritos.id === item.id)
+                            ? 'check-bold'
+                            : 'heart-plus'
+                        }
+                        color={
+                          favoritos.some(favoritos => favoritos.id === item.id)
+                            ? '#257a04'
+                            : '#eb4034'
+                        }
                         size={40}
-                       />
-                      
+                      />
                     </TouchableOpacity>
                   </View>
                 </View>
@@ -187,7 +189,6 @@ export const Post = ({navigation}: Props) => {
             <Text>Ir a favoritos</Text>
           </TouchableOpacity>
         </View> */}
-
       </SafeAreaView>
     </>
   );
